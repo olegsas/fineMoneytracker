@@ -2,15 +2,11 @@
 var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
 var DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
 var WEEK = 7;//days in a week
-var COUNT = 0;// for debug only
-var COUNT1 = 0;//for debug only
 
 function randomMoney(min, max){
     var amount = Math.floor(Math.random()*(max-min) + min);
     return amount;
 }
-
-
 
 function oneDayOfUser(){// we parse all transaction list
     var i = 1, 
@@ -78,9 +74,6 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
     
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
-        //print("i="+i);
-        //print("oneDayOfUser().Period[i] = "+ oneDayOfUser().Period[i]);
-        //print("oneDayOfUser().Rate[i] = "+ oneDayOfUser().Rate[i]);
         if(
             (StudentH.Period[i] === "Month") && 
             (StudentH.Rate[i] === 1)){
@@ -90,7 +83,6 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             transaction_Date.setFullYear(Year);
             transaction_Date.setMonth(Month);
             transaction_Date.setDate(transactionDay);
-            //print("@@Full transaction date is"+transaction_Date);
             var transactionAmount = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount 
             // make a monthly transaction, we need to call random day
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
@@ -98,9 +90,7 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             var operationName =  StudentH.OperationName[i]
             var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
-            //print("transactionName array - " + transactionNameH[0].names);
             var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
-            //print("name of any transaction = "+ transactionNameOnly);
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
             var transactionAccount = StudentH.Account[i];
@@ -174,9 +164,6 @@ return arr;
 
 function makeMonthlyTransactionsTwice(start_Day, finish_Day, Month, Year){
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
-        print("i="+i);
-        print("oneDayOfUser().Period[i] = "+ StudentH.Period[i]);
-        print("oneDayOfUser().Rate[i] = "+ StudentH.Rate[i]);
         if(
             (StudentH.Period[i] === "Month") && 
             (StudentH.Rate[i] === 2)){
@@ -194,8 +181,6 @@ function makeMonthlyTransactionsTwice(start_Day, finish_Day, Month, Year){
             transaction_Date2.setDate(transactionDays[1]);
             // we have got transaction_Date1 and transaction_Date2
 
-            print("@@Full transaction date1 is"+transaction_Date1);
-            print("@@Full transaction date2 is"+transaction_Date2);
 
             var transactionAmount1 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount 
             var transactionAmount2 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount
@@ -206,11 +191,8 @@ function makeMonthlyTransactionsTwice(start_Day, finish_Day, Month, Year){
             var operationName =  StudentH.OperationName[i]
             var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
-            print("transactionName array - " + transactionNameH[0].names);
             var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
             var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
-            print("name of any transaction1 = "+ transactionNameOnly1);
-            print("name of any transaction2 = "+ transactionNameOnly2);
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -266,18 +248,13 @@ function makeMonthlyTransactionsTwice(start_Day, finish_Day, Month, Year){
 
 function runMonthly(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
-    print("##startDATE-"+startDATE);
     
     var finishDATE = standartDate(finishDate);//standart Data objects
     var start_Day = startDATE.getDate();
-    print("##start_Day - "+ start_Day);
     var start_Month = startDATE.getMonth();// month is in range 0...11
-    print("##start_Month - "+start_Month);
     var start_Year = startDATE.getFullYear();
-    print("##start_Year - "+start_Year);
 
     var max_day_month = new  Date(start_Year, start_Month+1, 0).getDate();// how many days in month
-    print("##max_day_month - "+max_day_month);
 
     var last_Day = max_day_month; // for the first month
         
@@ -288,7 +265,6 @@ function runMonthly(startDate, finishDate){// global function runs transaction g
        
         var zDATE = new Date(start_Year, start_Month, last_Day);
         zDATE.setDate(zDATE.getDate()+1);
-        print("### 1 now NOW DATE = "+zDATE);// 1-st February
 
 	var cycleDATEstart,
 	    cycleDATEfinish,
@@ -301,15 +277,10 @@ function runMonthly(startDate, finishDate){// global function runs transaction g
 	    bufferYear;
 	    do{
 	        cycleDATEstart = zDATE;// first day of month
-	        print("##cycleDATEstart - " + cycleDATEstart);
 	        cycleDayFirst = zDATE.getDate();
-	        print("cycleDay - " + cycleDayFirst);
 	        cycleMonth = zDATE.getMonth();
-	        print("cycleMonth - " + cycleMonth);//february = 1
 	        cycleYear = zDATE.getFullYear();
-	        print("cycleYear - " + cycleYear);
 	        cycle_day_in_month = new Date(cycleYear, cycleMonth+1,0).getDate();//how many days in month - OK
-	        print("##cycle_day_in_month - " + cycle_day_in_month);
 
 	        bufferDay = cycleDATEstart.getDate();
 	        bufferMonth = cycleDATEstart.getMonth();
@@ -317,7 +288,6 @@ function runMonthly(startDate, finishDate){// global function runs transaction g
         
 	        cycleDATEfinish = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone
 	        cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_month-1);
-	        print("##cycleDATEfinish - " + cycleDATEfinish);
     
 	        if(cycleDATEfinish > finishDATE){
 	            makeMonthlyTransactions(cycleDayFirst, finishDATE.getDate(), cycleMonth, cycleYear);
@@ -336,9 +306,6 @@ function runMonthly(startDate, finishDate){// global function runs transaction g
         
 	        zDATE = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone 
 	        zDATE.setDate(cycleDATEfinish.getDate()+1);
-	        print("##zDATE = cycleDATEfinish+1 = "+zDATE);
-	        print("$$cycleDATEfinish - "+cycleDATEfinish);
-	        print("$$finishDATE - "+finishDATE);
     	}while(cycleDATEfinish < finishDATE);
 }
 
@@ -374,9 +341,6 @@ function toPlainDays(anyDate, anyMonth, anyYear){//returns tow many days between
 
 function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
-        print("i="+i);
-        print("oneDayOfUser().Period[i] = "+ StudentH.Period[i]);
-        print("oneDayOfUser().Rate[i] = "+ StudentH.Rate[i]);
         if(
             (StudentH.Period[i] === "Year") && 
             (StudentH.Rate[i] === 3)){
@@ -391,9 +355,6 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
             
             // we have got from transaction_Date1 to transaction_Date3
 
-            print("@@Full transaction date1 is"+transaction_Date1);
-            print("@@Full transaction date2 is"+transaction_Date2);
-            print("@@Full transaction date3 is"+transaction_Date3);
 
             var transactionAmount1 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount 
             var transactionAmount2 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount
@@ -406,13 +367,9 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
             var operationName =  StudentH.OperationName[i]
             var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
-            print("transactionName array - " + transactionNameH[0].names);
             var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
             var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
             var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
-            print("name of any transaction1 = "+ transactionNameOnly1);
-            print("name of any transaction2 = "+ transactionNameOnly2);
-            print("name of any transaction3 = "+ transactionNameOnly3);
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -490,9 +447,6 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
 
 function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
-        print("i="+i);
-        print("oneDayOfUser().Period[i] = "+ StudentH.Period[i]);
-        print("oneDayOfUser().Rate[i] = "+ StudentH.Rate[i]);
         if(
             (StudentH.Period[i] === "Year") && 
             (StudentH.Rate[i] === 6)){
@@ -512,12 +466,6 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
             var transaction_Date6 = new Date(Year, 0, transactionDays[5]);// we convert it into an object format
             // we have got from transaction_Date1 to transaction_Date6
 
-            print("@@Full transaction date1 is"+transaction_Date1);
-            print("@@Full transaction date2 is"+transaction_Date2);
-            print("@@Full transaction date3 is"+transaction_Date3);
-            print("@@Full transaction date4 is"+transaction_Date4);
-            print("@@Full transaction date5 is"+transaction_Date5);
-            print("@@Full transaction date6 is"+transaction_Date6);
 
             var transactionAmount1 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount 
             var transactionAmount2 = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount
@@ -536,19 +484,12 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
             var operationName =  StudentH.OperationName[i]
             var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
-            print("transactionName array - " + transactionNameH[0].names);
             var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
             var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
             var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
             var transactionNameOnly4 = transactionNameH[0].names[Number_of_the_name_of_transaction4];
             var transactionNameOnly5 = transactionNameH[0].names[Number_of_the_name_of_transaction5];
             var transactionNameOnly6 = transactionNameH[0].names[Number_of_the_name_of_transaction6];
-            print("name of any transaction1 = "+ transactionNameOnly1);
-            print("name of any transaction2 = "+ transactionNameOnly2);
-            print("name of any transaction3 = "+ transactionNameOnly3);
-            print("name of any transaction4 = "+ transactionNameOnly4);
-            print("name of any transaction5 = "+ transactionNameOnly5);
-            print("name of any transaction6 = "+ transactionNameOnly6);
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -674,7 +615,6 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
 };
 
 function makeWeeklyTransactions(startTimeDay, lastTimeDay){
-    COUNT1++;print("COUNT1 = "+COUNT1);
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
     
     	if(
@@ -711,7 +651,6 @@ function makeWeeklyTransactions(startTimeDay, lastTimeDay){
 }
 
 function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
-    COUNT++; print("COUNT = "+COUNT);
     for(i=1; i<StudentH.len+1; i++){// we check the transaction list
     	
     	if(
@@ -790,16 +729,11 @@ function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
 
 function runYearly(startDate, finishDate){// global function runs transaction generation
     var startDATE = standartDate(startDate);
-    print("##startDATE-"+startDATE);
     
     var finishDATE = standartDate(finishDate);//standart Data objects
     var start_Day = startDATE.getDate();
-    print("##finishDATE - "+finishDATE);
-    print("##start_Day - "+ start_Day);
     var start_Month = startDATE.getMonth();// month is in range 0...11
-    print("##start_Month - "+start_Month);
     var start_Year = startDATE.getFullYear();
-    print("##start_Year - "+start_Year);
 
 
     var last_Day = DaysInYear(start_Year);// it will be 365 or 366
@@ -809,7 +743,6 @@ function runYearly(startDate, finishDate){// global function runs transaction ge
     
     var zDATE = new Date(start_Year, 0, last_Day);
         zDATE.setDate(zDATE.getDate()+1);
-        print("### New Year = "+zDATE);// New Year
 
     var cycleDATEstart,
     cycleDATEfinish,
@@ -823,15 +756,10 @@ function runYearly(startDate, finishDate){// global function runs transaction ge
 
     do{
         cycleDATEstart = zDATE;// 1 jan 2011
-        print("##cycleDATEstart - " + cycleDATEstart);
         cycleDayFirst = zDATE.getDate();
-        print("cycleDay - " + cycleDayFirst);
         cycleMonth = zDATE.getMonth();
-        print("cycleMonth - " + cycleMonth);//february = 1
         cycleYear = zDATE.getFullYear();
-        print("cycleYear - " + cycleYear);
         cycle_day_in_year = DaysInYear(cycleYear);// 365 or 366
-        print("##cycle_day_in_year - " + cycle_day_in_year);
 
         bufferDay = cycleDATEstart.getDate();
         bufferMonth = cycleDATEstart.getMonth();
@@ -839,7 +767,6 @@ function runYearly(startDate, finishDate){// global function runs transaction ge
         
         cycleDATEfinish = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone
         cycleDATEfinish.setDate(cycleDATEfinish.getDate()+cycle_day_in_year-1);
-        print("##cycleDATEfinish - " + cycleDATEfinish);
 
         if(cycleDATEfinish > finishDATE){
             makeYearlyTransactionsTriple(cycleDayFirst, toPlainDays(finishDATE.getDate(), finishDATE.getMonth(), finishDATE.getFullYear()), cycleYear);
@@ -860,9 +787,6 @@ function runYearly(startDate, finishDate){// global function runs transaction ge
         
         zDATE = new Date(bufferYear, bufferMonth, bufferDay);//just now we have a clone 
         zDATE.setDate(cycleDATEfinish.getDate()+1);
-        print("##zDATE = cycleDATEfinish+1 = "+zDATE);
-        print("$$cycleDATEfinish - "+cycleDATEfinish);
-        print("$$finishDATE - "+finishDATE);
     }while(cycleDATEfinish < finishDATE);
 }
 
@@ -887,9 +811,6 @@ function runWeekly(startDate, finishDate){// global function runs transaction ge
     do{
         cycleTimeDayStart = zTimeDay;// 1-st day of the next week
         cycleTimeDayFinish = cycleTimeDayStart + WEEK - 1;// last day of the next week
-        print("##cycleTimeDayStart = "+cycleTimeDayStart);
-        print("##cycleTimeDayFinish = "+cycleTimeDayFinish);
-        print("##finishTimeDay = "+finishTimeDay);
         if(cycleTimeDayFinish <= finishTimeDay){
             makeWeeklyTransactions(cycleTimeDayStart, cycleTimeDayFinish);
             makeWeeklyTransactionsTriple(cycleTimeDayStart, cycleTimeDayFinish);
@@ -906,7 +827,6 @@ function runWeekly(startDate, finishDate){// global function runs transaction ge
 /*--------------------- this three functions run three periods of transactions - month, year, week -----------------*/
 
 var StudentH = oneDayOfUser();// we take this array;
-//print("StudentH = "+StudentH.Period[2]);
 
 function runAll(begin, end){
     runYearly(begin, end);
