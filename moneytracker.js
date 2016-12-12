@@ -834,4 +834,14 @@ function runAll(begin, end){
     runWeekly(begin, end);
 }
 
+function dataRates(){
+    var ratesH = db.rates.find().toArray();
+    var len = ratesH.length;// the length of our array
+    print("ratesH.length = "+ratesH.length);
+    
+    print("ratesH[0].date = "+ratesH[0].date);
+}
+
+dataRates();
+
 runAll("1/1/2010", "11/25/2016");//start date and final date - in my task 2016
