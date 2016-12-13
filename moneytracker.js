@@ -845,13 +845,23 @@ function dataRates(){
         standartDateA[i] = standartDate(dataA[i]);
 
     }
-    print("dataA[1] = "+dataA[1]);
-    
     //print("rateA[0] = "+rateA[0]);
 
-    print("standartDateA[1] = "+standartDateA[1]);
+    ratesH.data = dataA;
+    //ratesH.rate = rateA;
+    ratesH.standartDate = standartDateA;
+
+    return ratesH;
 }
 
-dataRates();
+var ratesH = dataRates();// we have all data from DB in ratesH
 
-runAll("1/1/2010", "11/25/2016");//start date and final date - in my task 2016
+function findStartData(ratesH){
+
+}
+
+function findFinishData(ratesH){
+
+}
+
+runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
