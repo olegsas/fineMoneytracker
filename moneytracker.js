@@ -835,11 +835,21 @@ function runAll(begin, end){
 }
 
 function dataRates(){
-    var ratesH = db.rates.find().toArray();
-    var len = ratesH.length;// the length of our array
-    print("ratesH.length = "+ratesH.length);
+    var ratesdbH = db.rates.find().toArray();// we accept it from the DB
+    var len = ratesdbH.length;// the length of our array
+    var ratesH = {};// we create a new object
+    dataA = []; rateA = []; standartDateA = [];
+    for(var i = 0; i<len; i++){
+        dataA[i] = ratesdbH[i].date;
+        //rateA[i] = ratesdbH[i].rate; there is a problem - field rate begins with a space
+        standartDateA[i] = standartDate(dataA[i]);
+
+    }
+    print("dataA[1] = "+dataA[1]);
     
-    print("ratesH[0].date = "+ratesH[0].date);
+    //print("rateA[0] = "+rateA[0]);
+
+    print("standartDateA[1] = "+standartDateA[1]);
 }
 
 dataRates();
