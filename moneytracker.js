@@ -857,11 +857,41 @@ function dataRates(){
 var ratesH = dataRates();// we have all data from DB in ratesH
 
 function findStartData(ratesH){
-
+    var standartDateA = ratesH.standartDate; //we have the array
+    var min = standartDateA[0].getTime();
+    var cycleTime;
+    var num = 0;
+    var len = standartDateA.length;
+    for(var i=0; i<len; i++){
+        cycleTime = standartDateA[i].getTime();
+        if (cycleTime < min){
+            min = cycleTime;
+            num = i;
+        } 
+    }
+    print("startData - "+standartDateA[num]);
 }
 
 function findFinishData(ratesH){
-
+    var standartDateA = ratesH.standartDate; //we have the array
+    var max = standartDateA[0].getTime();
+    var cycleTime;
+    var num = 0;
+    var len = standartDateA.length;
+    for(var i=0; i<len; i++){
+        cycleTime = standartDateA[i].getTime();
+        if (cycleTime > max){
+            max = cycleTime;
+            num = i;
+        } 
+    }
+    print("finishData - "+standartDateA[num]);
 }
 
-runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
+findStartData(ratesH);
+findFinishData(ratesH);
+
+
+
+
+//runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
