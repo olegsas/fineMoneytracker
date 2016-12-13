@@ -857,6 +857,7 @@ function dataRates(){
 var ratesH = dataRates();// we have all data from DB in ratesH
 
 function findStartData(ratesH){
+    var dataA = ratesH.data;// the array with string data
     var standartDateA = ratesH.standartDate; //we have the array
     var min = standartDateA[0].getTime();
     var cycleTime;
@@ -869,10 +870,11 @@ function findStartData(ratesH){
             num = i;
         } 
     }
-    print("startData - "+standartDateA[num]);
+    print("startData - "+dataA[num]);
 }
 
 function findFinishData(ratesH){
+    var dataA = ratesH.data;// the array with string data
     var standartDateA = ratesH.standartDate; //we have the array
     var max = standartDateA[0].getTime();
     var cycleTime;
@@ -885,7 +887,7 @@ function findFinishData(ratesH){
             num = i;
         } 
     }
-    print("finishData - "+standartDateA[num]);
+    print("finishData - "+dataA[num]);
 }
 
 findStartData(ratesH);
