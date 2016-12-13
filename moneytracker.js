@@ -890,5 +890,30 @@ function findFinishData(ratesH){
     return dataA[num];
 }
 
+function makeWallets(AccountA){//AccountA - is an array of accounts
+    var wallets = [];
+    var cycleWallet;
+    print("##account 0 "+wallets[0]);
+    print("##len" + wallets.length);
+    var len = AccountA.length;
+    for(var i = 1; i <=len ; i++){
+        cycleWallet = AccountA[i];
+        if(wallets.indexOf(cycleWallet) == -1){// the mistake was to use = instead of == or even ===
+            wallets.push(cycleWallet);
+        }
+    }
+    print("number of accounts - "+ wallets.length);
+    print("wallet 0 "+wallets[0]);
+    print("wallet 1 "+wallets[1]);
+    print("wallet 2 "+wallets[2]);
+    print("wallet 3 "+wallets[3]);
+    print("wallet 4 "+wallets[4]);
+    print("wallet 5 "+wallets[5]);
+}
 
-runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
+print("StudentH.Account[1] - "+StudentH.Account[1]);
+
+makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
+
+
+//runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
