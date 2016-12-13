@@ -870,7 +870,7 @@ function findStartData(ratesH){
             num = i;
         } 
     }
-    print("startData - "+dataA[num]);
+    return dataA[num];
 }
 
 function findFinishData(ratesH){
@@ -887,13 +887,8 @@ function findFinishData(ratesH){
             num = i;
         } 
     }
-    print("finishData - "+dataA[num]);
+    return dataA[num];
 }
 
-findStartData(ratesH);
-findFinishData(ratesH);
 
-
-
-
-//runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
+runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
