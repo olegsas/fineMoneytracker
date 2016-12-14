@@ -932,10 +932,96 @@ function makeNames(OperationNameA){//OperationNameA - is an array of operation n
     }
 }// we make the names collection
 
+function makeTransactionNames(){// we make names for the transaction operations
+    var namesH = {
+        "GroceryShopping": [ 
+            "fruits", 
+            "meat", 
+            "vegetables", 
+            "fish"
+        ],
+        "ClothesShopping": [
+            "shirt", 
+            "boots", 
+            "jeans", 
+            "hat"
+        ],
+        "Transport": [
+            "bus", 
+            "tram", 
+            "metro", 
+            "minibus"
+        ],
+        "Rest": [
+            "cinema", 
+            "cafe", 
+            "football", 
+            "gym"
+        ],
+        "Study": [
+            "books", 
+            "copybooks", 
+            "online training", 
+            "seminar"
+        ],
+        "HouseRent": [
+            "gas", 
+            "water", 
+            "electricity", 
+            "home telephone"
+        ],
+        "Utilities": [
+            "toothpaste", 
+            "soap", 
+            "shampoo", 
+            "shaving cream"
+        ],
+        "Internet": [
+            "beltelecom", 
+            "zala", 
+            "damavik", 
+            "hottelecom"
+        ],
+        "Phone": [
+            "mts", 
+            "velcom", 
+            "life", 
+            "privet"
+        ],
+        "PhoneAndInternet": [
+            "life 3G", 
+            "velcom 3G", 
+            "mts 3G", 
+            "privet 3G"
+        ],
+        "UtilitiesAndPhone": [
+            "case for a phone", 
+            "battery", 
+            "microSD card", 
+            "protective film for a phone"
+        ],
+        "Parents": [
+            "mother", 
+            "father", 
+            "uncle", 
+            "aunt"
+        ],
+        "Salary": [
+            "work", 
+            "hackwork", 
+            "subcontractor`s work", 
+            "telework"
+        ]
+    }
+    return namesH;// we return an object with operation names
+}
+
 
 makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
 //wallets is the array with single unique wallets
 makeNames(StudentH.OperationName);
+
+var namesH = makeTransactionNames(); namesH is an object with transaction names;
 
 
 //runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
