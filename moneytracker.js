@@ -1022,7 +1022,7 @@ makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transac
 //wallets is the array with single unique wallets
 makeNames(StudentH.OperationName);
 
-var namesH = makeTransactionNames(); namesH is an object with transaction names;
+var namesH = makeTransactionNames();// namesH is an object with transaction names;
 
 
-//runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
+runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
