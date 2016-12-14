@@ -73,6 +73,10 @@ function WriteWallet(name, amount){
     db.wallets.insert({"name": name, "amount": amount});
 }// we create wallets collection
 
+function WriteName(name){
+    db.names.insert({"name": name});
+}// we create names collection
+
 function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
@@ -911,9 +915,27 @@ function makeWallets(AccountA){//AccountA - is an array of accounts
     }
 }// we make the wallets collection
 
+function makeNames(OperationNameA){//OperationNameA - is an array of operation names
+    var names = [];
+    var cycleName;
+    var len = OperationNameA.length;
+    for(var i = 1; i<=len; i++){
+        cycleName = OperationNameA[i];
+        if(cycleName){
+            if(names.indexOf(cycleName) == -1){
+                names.push(cycleName);
+            }
+        }
+    }
+    for(var j = 0; j<names.length; j++){
+        WriteName(names[j]);
+    }
+}// we make the names collection
+
 
 makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
 //wallets is the array with single unique wallets
+makeNames(StudentH.OperationName);
 
 
 //runAll(findStartData(ratesH), findFinishData(ratesH));//start date and final date - in my task 2016
