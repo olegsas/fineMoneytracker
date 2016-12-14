@@ -69,6 +69,10 @@ function WriteTransaction(Date, Type, Category, Name, Amount, Currency, Account)
                            "Amount": Amount, "Currency": Currency, "Account": Account});
 }// we insert document into the collection
 
+function WriteWallet(name, amount){
+    db.wallets.insert({"name": name, "amount": amount});
+}// we create wallets collection
+
 function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check the list of transactions and if we have a monthly one we generate a random day and make a transaction
     //there are arrays typeA[1]...typeA[length] - for every transaction
     // if we have a full month then start_Day is 1 and if we have the first month we use the start_Day
@@ -902,11 +906,13 @@ function makeWallets(AccountA){//AccountA - is an array of accounts
             }
         }
     }
-    return wallets;// wallets is the array with unique single accounts
-}
+    for(var j = 0; j<wallets.length; j++){
+        WriteWallet(wallets[j],0);//start amounts = 0
+    }
+}// we make the wallets collection
 
 
-var wallets = makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
+makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
 //wallets is the array with single unique wallets
 
 
