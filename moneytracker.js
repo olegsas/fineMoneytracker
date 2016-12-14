@@ -96,9 +96,10 @@ function makeMonthlyTransactions(start_Day, finish_Day, Month, Year){// we check
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameA = namesH[operationName];
+            //db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
             // we have an object from the cursor with transactions names of the operation
-            var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
+            var transactionNameOnly = transactionNameA[Number_of_the_name_of_transaction];
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
             var transactionAccount = StudentH.Account[i];
@@ -197,10 +198,10 @@ function makeMonthlyTransactionsTwice(start_Day, finish_Day, Month, Year){
             var Number_of_the_name_of_transaction2 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameA = namesH[operationName];
             // we have an object from the cursor with transactions names of the operation
-            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
-            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
+            var transactionNameOnly1 = transactionNameA[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameA[Number_of_the_name_of_transaction2];
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -373,11 +374,11 @@ function makeYearlyTransactionsTriple(start_Day, last_Day, Year){
             var Number_of_the_name_of_transaction3 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameA = namesH[operationName];
             // we have an object from the cursor with transactions names of the operation
-            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
-            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
-            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
+            var transactionNameOnly1 = transactionNameA[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameA[Number_of_the_name_of_transaction2];
+            var transactionNameOnly3 = transactionNameA[Number_of_the_name_of_transaction3];
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -490,14 +491,14 @@ function makeYearlyTransactionsSixTimes(start_Day, last_Day, Year){
             var Number_of_the_name_of_transaction6 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             // Math.random()<1 that`s why name_of_transactions<NUMBER_OF_CATEGORY_NAMES
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
+            var transactionNameA = namesH[operationName];
             // we have an object from the cursor with transactions names of the operation
-            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
-            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
-            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
-            var transactionNameOnly4 = transactionNameH[0].names[Number_of_the_name_of_transaction4];
-            var transactionNameOnly5 = transactionNameH[0].names[Number_of_the_name_of_transaction5];
-            var transactionNameOnly6 = transactionNameH[0].names[Number_of_the_name_of_transaction6];
+            var transactionNameOnly1 = transactionNameA[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameA[Number_of_the_name_of_transaction2];
+            var transactionNameOnly3 = transactionNameA[Number_of_the_name_of_transaction3];
+            var transactionNameOnly4 = transactionNameA[Number_of_the_name_of_transaction4];
+            var transactionNameOnly5 = transactionNameA[Number_of_the_name_of_transaction5];
+            var transactionNameOnly6 = transactionNameA[Number_of_the_name_of_transaction6];
 
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
@@ -635,8 +636,8 @@ function makeWeeklyTransactions(startTimeDay, lastTimeDay){
             var transactionAmount = randomMoney(StudentH.AmountMin[i], StudentH.AmountMax[i])//returns  amount
             var Number_of_the_name_of_transaction = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
-            var transactionNameOnly = transactionNameH[0].names[Number_of_the_name_of_transaction];
+            var transactionNameA = namesH[operationName];
+            var transactionNameOnly = transactionNameA[Number_of_the_name_of_transaction];
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
             var transactionAccount = StudentH.Account[i];
@@ -682,10 +683,10 @@ function makeWeeklyTransactionsTriple(startTimeDay, lastTimeDay){
             var Number_of_the_name_of_transaction2 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             var Number_of_the_name_of_transaction3 = Math.floor((Math.random()*NUMBER_OF_CATEGORY_NAMES));//0...NUMBER-1
             var operationName =  StudentH.OperationName[i]
-            var transactionNameH = db.names.find({"transaction":StudentH.OperationName[i]},{"names":1,_id:0}).toArray();
-            var transactionNameOnly1 = transactionNameH[0].names[Number_of_the_name_of_transaction1];
-            var transactionNameOnly2 = transactionNameH[0].names[Number_of_the_name_of_transaction2];
-            var transactionNameOnly3 = transactionNameH[0].names[Number_of_the_name_of_transaction3];
+            var transactionNameA = namesH[operationName];
+            var transactionNameOnly1 = transactionNameA[Number_of_the_name_of_transaction1];
+            var transactionNameOnly2 = transactionNameA[Number_of_the_name_of_transaction2];
+            var transactionNameOnly3 = transactionNameA[Number_of_the_name_of_transaction3];
             var transactionType = StudentH.Type[i];
             var transactionCurrency = StudentH.Currency[i];
             var transactionAccount = StudentH.Account[i];
