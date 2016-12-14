@@ -1,7 +1,7 @@
 // We write the constants here
-var NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
-var DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
-var WEEK = 7;//days in a week
+const NUMBER_OF_CATEGORY_NAMES = 4;//how many names are in one category
+const DATE_OF_DENOMINATION = new Date("2016-07-01");//the date of denomination, the constants
+const WEEK = 7;//days in a week
 
 function randomMoney(min, max){
     var amount = Math.floor(Math.random()*(max-min) + min);
@@ -1016,7 +1016,6 @@ function makeTransactionNames(){// we make names for the transaction operations
     }
     return namesH;// we return an object with operation names
 }
-
 
 makeWallets(StudentH.Account);// StudentH.AccountA - is the array of the transaction accounts
 //wallets is the array with single unique wallets
